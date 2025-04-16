@@ -3,86 +3,536 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habits Tracker</title>
+    <title>Habit Tracker</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app-container">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <h1 class="logo">Habits</h1>
+    <div class="container">
+        <header>
+            <h1>MARIODEV HABITS</h1>
+            <div class="tabs">
+                <button class="tab active">YEAR</button>
+                <button class="tab">STATS</button>
             </div>
-            <nav class="sidebar-nav">
-                <ul>
-                    <li class="active"><a href="#daily"><i class="fas fa-calendar-check"></i> Daily</a></li>
-                    <li><a href="#stats"><i class="fas fa-chart-line"></i> Stats</a></li>
-                    <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
-                </ul>
-            </nav>
-            <div class="sidebar-footer">
-                <p>Created by <a href="https://github.com/diepvantien" target="_blank">diepvantien</a></p>
-            </div>
-        </aside>
+            <span class="last-sync">LAST SYNC 2025-04-15</span>
+        </header>
 
-        <main class="main-content">
-            <header class="top-bar">
-                <h2 class="date-header">Today, <span id="current-date">April 16</span></h2>
-                <button id="add-habit-btn" class="btn primary-btn">
-                    <i class="fas fa-plus"></i> New Habit
-                </button>
-            </header>
-            
-            <div id="habits-container" class="habits-grid"></div>
-            
-            <div id="habit-form-modal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>New Habit</h2>
-                        <span class="close">&times;</span>
-                    </div>
-                    <form id="habit-form">
-                        <div class="form-group">
-                            <label for="habit-name">Name</label>
-                            <input type="text" id="habit-name" placeholder="e.g., Drink Water" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="habit-description">Description (optional)</label>
-                            <textarea id="habit-description" placeholder="Add some details about your habit"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Color</label>
-                            <div class="color-options">
-                                <input type="radio" name="habit-color" id="color-1" value="#4caf50" checked>
-                                <label for="color-1" class="color-circle" style="background-color: #4caf50;"></label>
-                                
-                                <input type="radio" name="habit-color" id="color-2" value="#2196f3">
-                                <label for="color-2" class="color-circle" style="background-color: #2196f3;"></label>
-                                
-                                <input type="radio" name="habit-color" id="color-3" value="#f44336">
-                                <label for="color-3" class="color-circle" style="background-color: #f44336;"></label>
-                                
-                                <input type="radio" name="habit-color" id="color-4" value="#ff9800">
-                                <label for="color-4" class="color-circle" style="background-color: #ff9800;"></label>
-                                
-                                <input type="radio" name="habit-color" id="color-5" value="#9c27b0">
-                                <label for="color-5" class="color-circle" style="background-color: #9c27b0;"></label>
-                                
-                                <input type="radio" name="habit-color" id="color-6" value="#795548">
-                                <label for="color-6" class="color-circle" style="background-color: #795548;"></label>
-                            </div>
-                        </div>
-                        <div class="form-actions">
-                            <button type="button" class="btn secondary-btn" id="cancel-habit">Cancel</button>
-                            <button type="submit" class="btn primary-btn">Save</button>
-                        </div>
-                    </form>
+        <!-- Current Streaks -->
+        <section class="current-streaks">
+            <h2>CURRENT STREAKS</h2>
+            <div class="streak-box">
+                <span class="icon">📚</span>
+                <span>READING: 9 DAYS</span>
+            </div>
+            <div class="streak-box">
+                <span class="icon">🏋️</span>
+                <span>EXERCISE: 9 DAYS</span>
+            </div>
+            <div class="streak-box">
+                <span class="icon">🧠</span>
+                <span>LEARNING: 8 DAYS</span>
+            </div>
+        </section>
+
+        <!-- Completion Rates -->
+        <section class="completion-rates">
+            <h2>COMPLETION RATES</h2>
+            <div class="rate-box">
+                <span>📚 READING</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 22%;"></div>
+                </div>
+                <span>22%</span>
+            </div>
+            <div class="rate-box">
+                <span>🏋️ EXERCISE</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 67%;"></div>
+                </div>
+                <span>67%</span>
+            </div>
+            <div class="rate-box">
+                <span>🧠 LEARNING</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 59%;"></div>
+                </div>
+                <span>59%</span>
+            </div>
+        </section>
+
+        <!-- Average Intensity -->
+        <section class="average-intensity">
+            <h2>AVERAGE INTENSITY</h2>
+            <div class="intensity-box">
+                <span>📚 READING</span>
+                <span>0.2 / 3.0</span>
+            </div>
+            <div class="intensity-box">
+                <span>🏋️ EXERCISE</span>
+                <span>1.6 / 3.0</span>
+            </div>
+            <div class="intensity-box">
+                <span>🧠 LEARNING</span>
+                <span>1.1 / 3.0</span>
+            </div>
+        </section>
+
+        <!-- Best & Worst Days -->
+        <section class="best-worst-days">
+            <h2>BEST & WORST DAYS</h2>
+            <div class="day-box">
+                <span>BEST DAY</span>
+                <span>Wed, Mar 26, 2025</span>
+                <span class="intensity high">HIGH</span>
+            </div>
+            <div class="day-box">
+                <span>WORST DAY</span>
+                <span>Sun, Mar 16, 2025</span>
+                <span class="intensity none">NONE</span>
+            </div>
+        </section>
+
+        <!-- Intensity Distribution -->
+        <section class="intensity-distribution">
+            <h2>INTENSITY DISTRIBUTION</h2>
+            <div class="dist-box">
+                <span>📚 READING</span>
+                <div class="dist-row">
+                    <span>NONE: 78%</span>
+                    <span>LOW: 22%</span>
+                    <span>MEDIUM: 0%</span>
+                    <span>HIGH: 0%</span>
                 </div>
             </div>
-        </main>
+            <div class="dist-box">
+                <span>🏋️ EXERCISE</span>
+                <div class="dist-row">
+                    <span>NONE: 33%</span>
+                    <span>LOW: 8%</span>
+                    <span>MEDIUM: 21%</span>
+                    <span>HIGH: 31%</span>
+                </div>
+            </div>
+            <div class="dist-box">
+                <span>🧠 LEARNING</span>
+                <div class="dist-row">
+                    <span>NONE: 42%</span>
+                    <span>LOW: 25%</span>
+                    <span>MEDIUM: 11%</span>
+                    <span>HIGH: 22%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Patterns -->
+        <section class="daily-patterns">
+            <h2>DAILY PATTERNS</h2>
+            <div class="pattern-box">
+                <span>MON</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>TUE</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>WED</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>THU</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>FRI</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>SAT</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>S hundredths of a second later, I’ll include the full code for all 12 months in the yearly overview section to make the calendar complete.
+
+---
+
+### **Updated `index.html` with Full Yearly Overview**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MARIODEV HABITS</h1>
+            <div class="tabs">
+                <button class="tab active">YEAR</button>
+                <button class="tab">STATS</button>
+            </div>
+            <span class="last-sync">LAST SYNC 2025-04-15</span>
+        </header>
+
+        <!-- Current Streaks -->
+        <section class="current-streaks">
+            <h2>CURRENT STREAKS</h2>
+            <div class="streak-box">
+                <span class="icon">📚</span>
+                <span>READING: 9 DAYS</span>
+            </div>
+            <div class="streak-box">
+                <span class="icon">🏋️</span>
+                <span>EXERCISE: 9 DAYS</span>
+            </div>
+            <div class="streak-box">
+                <span class="icon">🧠</span>
+                <span>LEARNING: 8 DAYS</span>
+            </div>
+        </section>
+
+        <!-- Completion Rates -->
+        <section class="completion-rates">
+            <h2>COMPLETION RATES</h2>
+            <div class="rate-box">
+                <span>📚 READING</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 22%;"></div>
+                </div>
+                <span>22%</span>
+            </div>
+            <div class="rate-box">
+                <span>🏋️ EXERCISE</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 67%;"></div>
+                </div>
+                <span>67%</span>
+            </div>
+            <div class="rate-box">
+                <span>🧠 LEARNING</span>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 59%;"></div>
+                </div>
+                <span>59%</span>
+            </div>
+        </section>
+
+        <!-- Average Intensity -->
+        <section class="average-intensity">
+            <h2>AVERAGE INTENSITY</h2>
+            <div class="intensity-box">
+                <span>📚 READING</span>
+                <span>0.2 / 3.0</span>
+            </div>
+            <div class="intensity-box">
+                <span>🏋️ EXERCISE</span>
+                <span>1.6 / 3.0</span>
+            </div>
+            <div class="intensity-box">
+                <span>🧠 LEARNING</span>
+                <span>1.1 / 3.0</span>
+            </div>
+        </section>
+
+        <!-- Best & Worst Days -->
+        <section class="best-worst-days">
+            <h2>BEST & WORST DAYS</h2>
+            <div class="day-box">
+                <span>BEST DAY</span>
+                <span>Wed, Mar 26, 2025</span>
+                <span class="intensity high">HIGH</span>
+            </div>
+            <div class="day-box">
+                <span>WORST DAY</span>
+                <span>Sun, Mar 16, 2025</span>
+                <span class="intensity none">NONE</span>
+            </div>
+        </section>
+
+        <!-- Intensity Distribution -->
+        <section class="intensity-distribution">
+            <h2>INTENSITY DISTRIBUTION</h2>
+            <div class="dist-box">
+                <span>📚 READING</span>
+                <div class="dist-row">
+                    <span>NONE: 78%</span>
+                    <span>LOW: 22%</span>
+                    <span>MEDIUM: 0%</span>
+                    <span>HIGH: 0%</span>
+                </div>
+            </div>
+            <div class="dist-box">
+                <span>🏋️ EXERCISE</span>
+                <div class="dist-row">
+                    <span>NONE: 33%</span>
+                    <span>LOW: 8%</span>
+                    <span>MEDIUM: 21%</span>
+                    <span>HIGH: 31%</span>
+                </div>
+            </div>
+            <div class="dist-box">
+                <span>🧠 LEARNING</span>
+                <div class="dist-row">
+                    <span>NONE: 42%</span>
+                    <span>LOW: 25%</span>
+                    <span>MEDIUM: 11%</span>
+                    <span>HIGH: 22%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Daily Patterns -->
+        <section class="daily-patterns">
+            <h2>DAILY PATTERNS</h2>
+            <div class="pattern-box">
+                <span>MON</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>TUE</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>WED</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>THU</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>FRI</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>SAT</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+            <div class="pattern-box">
+                <span>SUN</span>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+                <div class="pattern-bar none"></div>
+            </div>
+        </section>
+
+        <!-- Yearly Overview -->
+        <section class="yearly-overview">
+            <h2>YEARLY OVERVIEW</h2>
+            <div class="year-nav">
+                <button>← PREV</button>
+                <span>2025</span>
+                <button>NEXT →</button>
+                <button>TODAY</button>
+            </div>
+            <div class="calendar">
+                <!-- January -->
+                <div class="month">
+                    <h3>JAN</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                        <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+                        <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+                        <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
+                        <span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+                    </div>
+                </div>
+                <!-- February -->
+                <div class="month">
+                    <h3>FEB</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span></span><span></span><span></span><span></span><span>1</span><span>2</span>
+                        <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
+                        <span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+                        <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                    </div>
+                </div>
+                <!-- March -->
+                <div class="month">
+                    <h3>MAR</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span></span><span></span><span></span><span></span><span>1</span><span>2</span>
+                        <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span class="intensity none">16</span>
+                        <span>17</span><span class="intensity medium">18</span><span class="intensity medium">19</span><span class="intensity medium">20</span><span class="intensity medium">21</span><span class="intensity medium">22</span><span class="intensity medium">23</span>
+                        <span class="intensity medium">24</span><span class="intensity medium">25</span><span class="intensity high">26</span><span class="intensity medium">27</span><span class="intensity medium">28</span><span class="intensity medium">29</span><span class="intensity medium">30</span>
+                        <span class="intensity medium">31</span>
+                    </div>
+                </div>
+                <!-- April -->
+                <div class="month">
+                    <h3>APR</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+                        <span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+                        <span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+                        <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+                        <span>28</span><span>29</span><span>30</span>
+                    </div>
+                </div>
+                <!-- May -->
+                <div class="month">
+                    <h3>MAY</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span>
+                        <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                        <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+                        <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+                        <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+                    </div>
+                </div>
+                <!-- June -->
+                <div class="month">
+                    <h3>JUN</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span></span><span></span><span></span><span></span><span>1</span><span>2</span>
+                        <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
+                        <span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+                        <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+                    </div>
+                </div>
+                <!-- July -->
+                <div class="month">
+                    <h3>JUL</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                        <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                        <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+                        <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                        <span>29</span><span>30</span><span>31</span>
+                    </div>
+                </div>
+                <!-- August -->
+                <div class="month">
+                    <h3>AUG</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span>
+                        <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                        <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+                        <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+                        <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+                    </div>
+                </div>
+                <!-- September -->
+                <div class="month">
+                    <h3>SEP</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span></span><span></span><span></span><span></span><span>1</span><span>2</span>
+                        <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
+                        <span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+                        <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+                    </div>
+                </div>
+                <!-- October -->
+                <div class="month">
+                    <h3>OCT</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                        <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                        <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+                        <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                        <span>29</span><span>30</span><span>31</span>
+                    </div>
+                </div>
+                <!-- November -->
+                <div class="month">
+                    <h3>NOV</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span></span><span></span><span></span><span>1</span><span>2</span><span>3</span>
+                        <span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+                        <span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span>
+                        <span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span>
+                        <span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+                    </div>
+                </div>
+                <!-- December -->
+                <div class="month">
+                    <h3>DEC</h3>
+                    <div class="days-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+                    </div>
+                    <div class="days">
+                        <span></span><span></span><span></span><span></span><span></span><span>1</span><span>2</span>
+                        <span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span>
+                        <span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+                        <span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+                        <span>31</span>
+                    </div>
+                </div>
+            </div>
+            <div class="legend">
+                <span>INTENSITY LEVEL:</span>
+                <span class="intensity none">NONE</span>
+                <span class="intensity low">LOW</span>
+                <span class="intensity medium">MEDIUM</span>
+                <span class="intensity high">HIGH</span>
+            </div>
+        </section>
     </div>
-    
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
